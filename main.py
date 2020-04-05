@@ -46,7 +46,11 @@ class Raidboss:
     def get_boses(self):
         headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:74.0) Gecko/20100101 Firefox/74.0'}
         cookies = {'BPG': '61fe52f4447379ddac4da8ee6cd2690d',
-                   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'}
+                   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+                   'Accept-Encoding': 'gzip, deflate, br',
+                   'Accept-Language': 'pl,en-US;q=0.7,en;q=0.3',
+                   'Cache-Control': 'max-age=0',
+                   'Connection': 'keep-alive'}
         session = HTMLSession()
         response = session.get('https://lineage2forever.org/', headers=headers, cookies=cookies, timeout=20)
         print(response.content)
