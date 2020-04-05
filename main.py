@@ -117,16 +117,16 @@ def get_boses():
 
 # get_boses()
 
-app = Flask(__name__)
-
-
-@app.route("/")
-def main():
-    return render_template('index.html', list_header="RB",
-                           rblist=get_boses(), site_title="ATB")
-
-
-if __name__ == "__main__":
-    app.jinja_env.auto_reload = True
-    app.config['TEMPLATES_AUTO_RELOAD'] = True
-    app.run(debug=True)
+# app = Flask(__name__)
+#
+#
+# @app.route("/")
+# def main():
+#     return render_template('index.html', list_header="RB",
+#                            rblist=get_boses(), site_title="ATB")
+#
+#
+# if __name__ == "__main__":
+#     app.jinja_env.auto_reload = True
+#     app.config['TEMPLATES_AUTO_RELOAD'] = True
+#     app.run(debug=True)
