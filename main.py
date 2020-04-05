@@ -49,6 +49,7 @@ class Raidboss:
                    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'}
         session = HTMLSession()
         response = session.get('https://lineage2forever.org/', headers=headers, cookies=cookies, timeout=20)
+        print(response.content)
         soup = BeautifulSoup(response.content, 'html.parser')
         table = soup.find('table', attrs={'class': 'table'})
         try:
