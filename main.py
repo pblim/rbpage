@@ -93,17 +93,20 @@ def get_boses():
                         hours=int(epic_list[rb_name])) - datetime.datetime.now()
                     if timeleft <= datetime.timedelta():
                         rblist.append([lines[0], lines[2], 'WINDOW', resp_date])
+                        print(str(lines[0]))
                     else:
                         resp_date = str(converted_to_gmt2 + datetime.timedelta(hours=int(epic_list[rb_name])))
                         t = str(timeleft).split('.', 2)[0]
-                        # print(rb_name + " TIMELEFT EPIC " + str(t))
                         rblist.append([lines[0], lines[2], str(t), resp_date])
                 else:
                     resp_date = str(converted_to_gmt2 + datetime.timedelta(hours=23))
                     timeleft = converted_to_gmt2 + datetime.timedelta(hours=23) - datetime.datetime.now()
-                    t = str(timeleft).split('.', 2)[0]
-                    rblist.append([lines[0], lines[2], str(t), resp_date])
-                    # print(f'{lines[0]} - {lines[2]} TIMELEFT - {t}')
+                    if timeleft <= datetime.timedelta():
+                        rblist.append([lines[0], lines[2], 'WINDOW', resp_date])
+                    else:
+                        t = str(timeleft).split('.', 2)[0]
+                        rblist.append([lines[0], lines[2], str(t), resp_date])
+                        # print(f'{lines[0]} - {lines[2]} TIMELEFT - {t}')
             else:
                 # print(f'{lines[0]} - {lines[1]}')
                 rblist.append([lines[0], lines[2], lines[1], ''])
@@ -129,7 +132,7 @@ def internal_server_error(e):
 
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(debug=True)
 
 '''Core  72 hours +/- 1 hour (retail level no custom drops)
 Orfen  72 hours +/- 1 hour (retail level no custom drops)
