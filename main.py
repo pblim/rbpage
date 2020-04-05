@@ -64,7 +64,7 @@ epic_list = {
 
 def get_boses():
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:74.0) Gecko/20100101 Firefox/74.0'}
-    cookies = {'atualstudio_language': 'en', 'BPG': '61fe52f4447379ddac4da8ee6cd2690d'}
+    cookies = {'BPG': '61fe52f4447379ddac4da8ee6cd2690d', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'}
     response = requests.get('https://lineage2forever.org/', headers=headers, cookies=cookies, timeout=20)
     soup = BeautifulSoup(response.content, 'html.parser')
     table = soup.find('table', attrs={'class': 'table'})
@@ -114,8 +114,7 @@ def get_boses():
     pprint(rblist_sorted)
     return rblist_sorted
 
-
-# get_boses()
+get_boses()
 
 # app = Flask(__name__)
 #
