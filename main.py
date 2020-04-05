@@ -4,7 +4,6 @@ import requests
 from bs4 import BeautifulSoup
 from flask import render_template, Flask
 from operator import itemgetter
-from apscheduler.schedulers.background import BackgroundScheduler
 
 epic_list = {
     'Core': '71',
