@@ -4,6 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 from flask import render_template, Flask
 from operator import itemgetter
+from apscheduler.schedulers.background import BackgroundScheduler
 
 epic_list = {
     'Core': '71',
@@ -32,6 +33,34 @@ epic_list = {
     'Ketra Commander Tayr': '71',
     'Blinding Fire Barakiel': '2'
 }
+"""[['Core', 'Alive', '-', ''],
+ ['Blinding Fire Barakiel', 'Dead', '0:47:49', '2020-04-05 21:43:00'],
+ ['Shax The Death Lord', 'Dead', '16:21:49', '2020-04-06 13:17:00'],
+ ['Hallate The Death Lord', 'Dead', '20:50:49', '2020-04-06 17:46:00'],
+ ['Golkonda Longhorn', 'Dead', '20:50:49', '2020-04-06 17:46:00'],
+ ['Uruka', 'Dead', '21:06:49', '2020-04-06 18:02:00'],
+ ['Kernon', 'Dead', '21:11:49', '2020-04-06 18:07:00'],
+ ['Under Queenant Dron', 'Dead', '21:19:49', '2020-04-06 18:15:00'],
+ ['Domb Death Cabrio', 'Dead', '22:56:49', '2020-04-06 19:52:00'],
+ ['King Tiger Karuta', 'Dead', '1 day, 0:38:49', '2020-04-06 21:34:00'],
+ ['Antharas1', 'Dead', '1 day, 2:38:49', '2020-04-06 23:34:00'],
+ ['Queen Ant', 'Dead', '1 day, 9:42:49', '2020-04-07 06:38:00'],
+ ['Zaken', 'Dead', '1 day, 11:07:49', '2020-04-07 08:03:00'],
+ ['Jeruna Queen', 'Dead', '1 day, 20:13:49', '2020-04-07 17:09:00'],
+ ['Ocean Flame Ashakiel', 'Dead', '1 day, 20:17:49', '2020-04-07 17:13:00'],
+ ['Demonic Agent Falston', 'Dead', '1 day, 20:26:49', '2020-04-07 17:22:00'],
+ ['Cronoss Summons Mumu', 'Dead', '1 day, 21:25:49', '2020-04-07 18:21:00'],
+ ['Geyser Guardian Hestia', 'Dead', '1 day, 21:48:49', '2020-04-07 18:44:00'],
+ ['Ereve Deathman', 'Dead', '1 day, 22:09:49', '2020-04-07 19:05:00'],
+ ['Amber', 'Dead', '1 day, 22:25:49', '2020-04-07 19:21:00'],
+ ['Archon Susceptor', 'Dead', '1 day, 22:27:49', '2020-04-07 19:23:00'],
+ ['Varka Commnder Mos', 'Dead', '1 day, 22:27:49', '2020-04-07 19:23:00'],
+ ['Ketra Commander Tayr', 'Dead', '1 day, 22:37:49', '2020-04-07 19:33:00'],
+ ['Papurrion Pingolpin', 'Dead', '1 day, 23:05:49', '2020-04-07 20:01:00'],
+ ['Cherub Garacsia', 'Dead', '1 day, 23:33:49', '2020-04-07 20:29:00'],
+ ['Orfen', 'Dead', '2 days, 0:39:49', '2020-04-07 21:35:00'],
+ ['Valakas', 'Dead', '2 days, 4:33:49', '2020-04-08 01:29:00'],
+ ['Baium', 'Dead', '2 days, 21:58:49', '2020-04-08 18:54:00']]"""
 
 
 def get_boses():
@@ -80,14 +109,14 @@ def get_boses():
                         rblist.append([lines[0], lines[2], str(t), resp_date])
                         # print(f'{lines[0]} - {lines[2]} TIMELEFT - {t}')
             else:
-                # print(f'{lines[0]} - {lines[1]}')
                 rblist.append([lines[0], lines[2], lines[1], ''])
 
     rblist_sorted = sorted(rblist, key=itemgetter(3), reverse=False)
     pprint(rblist_sorted)
     return rblist_sorted
 
-get_boses()
+
+# get_boses()
 
 app = Flask(__name__)
 
@@ -98,12 +127,7 @@ def main():
                            rblist=get_boses(), site_title="ATB")
 
 
-@app.errorhandler(500)
-def internal_server_error(e):
-    return render_template('500.html'), 500
-
-
-if __name__ == "__main__":
-    app.jinja_env.auto_reload = True
-    app.config['TEMPLATES_AUTO_RELOAD'] = True
-    app.run(debug=False)
+# if __name__ == "__main__":
+#     app.jinja_env.auto_reload = True
+#     app.config['TEMPLATES_AUTO_RELOAD'] = True
+#     app.run(debug=False)
