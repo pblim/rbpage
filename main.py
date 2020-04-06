@@ -35,7 +35,10 @@ class Raidboss:
             'Geyser Guardian Hestia': '71',
             'Jeruna Queen': '71',
             'Ketra Commander Tayr': '71',
-            'Blinding Fire Barakiel': '2'
+            'Blinding Fire Barakiel': '2',
+            'Hallate The Death Lord': '2',
+            'Kernon': '2',
+            'Golkonda Longhorn': '2'
         }
 
     def get_time_left(self, tod, nextresp):
