@@ -50,7 +50,7 @@ class Raidboss:
                    'Accept-Language': 'pl,en-US;q=0.7,en;q=0.3',
                    'Cache-Control': 'max-age=0',
                    'Connection': 'keep-alive'}
-        cookies = {'BPG': '61fe52f4447379ddac4da8ee6cd2690d'}
+        cookies = {'BPG': 'ab7773f55e0ffe72cdbf57d0659fbf03'}
         session = HTMLSession()
         response = session.get('https://lineage2forever.org/', headers=headers, cookies=cookies, timeout=20)
         print(response.content)
@@ -73,7 +73,6 @@ class Raidboss:
 
         for lines in data:
             if len(lines) == 3:
-                print(rblist)
                 if lines[2] == 'Dead':
                     converted_to_gmt2 = datetime.datetime.strptime(lines[1], '%d/%m/%Y %H:%M') + datetime.timedelta(
                         hours=1)
@@ -111,4 +110,4 @@ def main():
 if __name__ == "__main__":
     app.jinja_env.auto_reload = True
     app.config['TEMPLATES_AUTO_RELOAD'] = True
-    app.run(debug=True)
+    app.run(debug=False)
