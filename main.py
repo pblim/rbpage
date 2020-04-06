@@ -4,7 +4,6 @@ from bs4 import BeautifulSoup
 from flask import render_template, Flask
 from operator import itemgetter
 from requests_html import HTMLSession
-from selenium import webdriver
 
 
 class Raidboss:
@@ -53,11 +52,9 @@ class Raidboss:
                    'Connection': 'keep-alive'}
         cookies = {'BPG': 'ab7773f55e0ffe72cdbf57d0659fbf03'}
         session = HTMLSession()
-        driver = webdriver.Firefox()
-        response = driver.get('https://lineage2forever.org/')#, headers=headers, cookies=cookies, timeout=20)
-        html = driver.page_source
-        #print(response.content)
-        soup = BeautifulSoup(html, 'html.parser')
+        response = session.get('https://lineage2forever.org/', headers=headers, cookies=cookies, timeout=20)
+        print(response.content)
+        soup = BeautifulSoup(response.content, 'html.parser')
         table = soup.find('table', attrs={'class': 'table'})
         try:
             rows = table.find_all('tr')
