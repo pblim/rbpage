@@ -52,7 +52,7 @@ class Raidboss:
                    'Accept-Language': 'pl,en-US;q=0.7,en;q=0.3',
                    'Cache-Control': 'max-age=0',
                    'Connection': 'keep-alive'}
-        cookies = {'BPG': '70a589096c817427f59d91d95ae85696'}
+        cookies = {'BPG': '96ddda0017fe6d958a9df5700e90bb00'}
         session = HTMLSession()
         response = session.get('https://lineage2forever.org/', headers=headers, cookies=cookies, timeout=90)
         soup = BeautifulSoup(response.content, 'html.parser')
