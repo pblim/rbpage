@@ -53,7 +53,6 @@ class Raidboss:
         cookies = {'BPG': '96ddda0017fe6d958a9df5700e90bb00'}
         session = HTMLSession()
         response = session.get('https://lineage2forever.org/', headers=headers, cookies=cookies, timeout=20)
-        print(response.content)
         soup = BeautifulSoup(response.content, 'html.parser')
         table = soup.find('table', attrs={'class': 'table'})
         try:
@@ -91,7 +90,7 @@ class Raidboss:
                     rblist.append([lines[0], lines[2], lines[1], ''])
 
         rblist_sorted = sorted(rblist, key=itemgetter(3), reverse=False)
-        pprint(rblist_sorted)
+        #pprint(rblist_sorted)
         return rblist_sorted
 
 
