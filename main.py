@@ -1,7 +1,6 @@
 import datetime
 from operator import itemgetter
 from pprint import pprint
-
 from bs4 import BeautifulSoup
 from flask import render_template, Flask
 from requests_html import HTMLSession
@@ -47,6 +46,13 @@ class Raidboss:
         resp_date = str(tod + datetime.timedelta(hours=int(nextresp)))
         return timeleft, resp_date
 
+    @staticmethod
+    def get_window_time_left(resp_date, rb_name):
+        left = (datetime.datetime.strptime(resp_date, '%Y-%m-%d %H:%M:%S') + datetime.timedelta(hours=2)
+                - datetime.datetime.now())
+        left = str(left).split('.', 2)[0]
+        return left
+
     def get_boses(self):
         headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:74.0) Gecko/20100101 Firefox/74.0',
                    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
@@ -54,7 +60,7 @@ class Raidboss:
                    'Accept-Language': 'pl,en-US;q=0.7,en;q=0.3',
                    'Cache-Control': 'max-age=0',
                    'Connection': 'keep-alive'}
-        cookies = {'BPG': '96ddda0017fe6d958a9df5700e90bb00'}
+        cookies = {'BPG': 'd22de90cf34137d3ca19812e9467eada'}
         session = HTMLSession()
         response = session.get('https://lineage2forever.org/', headers=headers, cookies=cookies, timeout=90)
         #pprint(response.content)
@@ -87,7 +93,8 @@ class Raidboss:
                         timeleft, resp_date = self.get_time_left(converted_to_gmt2, 23)
 
                     if timeleft <= datetime.timedelta():
-                        rblist.append([rb_name, lines[2], 'WINDOW', resp_date])
+                        in_window_time_left = self.get_window_time_left(resp_date, rb_name)
+                        rblist.append([rb_name, lines[2], 'WINDOW ' + str(in_window_time_left) + ' left', resp_date])
                     else:
                         timeleft = str(timeleft).split('.', 2)[0]
                         rblist.append([lines[0], lines[2], timeleft, resp_date])
