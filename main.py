@@ -27,7 +27,6 @@ class Raidboss:
             'Archon Susceptor': '71',
             'Shax The Death Lord': '71',
             'Papurrion Pingolpin': '71',
-            'Anima': '71',
             'Cherub Garacsia': '71',
             'Cronoss Summons Mumu': '71',
             'Demonic Agent Falston': '71',
@@ -39,6 +38,22 @@ class Raidboss:
             'Hallate The Death Lord': '2',
             'Kernon': '2',
             'Golkonda Longhorn': '2'
+        }
+
+        self.drop_list = {
+            'King Tiger Karuta': 'Heavy Plat set',
+            'Uruka': 'Robe/Light Plat set',
+            'Ocean Flame Ashakiel': 'Light plat set',
+            'Amber':  'Light helmet',
+            'Varka Commnder Mos': 'Robe helmet',
+            'Archon Susceptor':  'Robe gloves',
+            'Cherub Garacsia':  'Light gloves',
+            'Cronoss Summons Mumu':  'Heavy gloves',
+            'Demonic Agent Falston':  'Light main',
+            'Ereve Deathman':  'Robe main',
+            'Geyser Guardian Hestia':  'Light boots',
+            'Jeruna Queen':  'Heavy helmet',
+            'Ketra Commander Tayr':  'Heavy main'
         }
 
     def get_time_left(self, tod, nextresp):
@@ -83,10 +98,16 @@ class Raidboss:
 
         for lines in data:
             if len(lines) == 3:
+                rb_name = lines[0]
+
+                if rb_name in self.drop_list:
+                    drop = self.drop_list[rb_name]
+                else:
+                    drop = ''
+
                 if lines[2] == 'Dead':
                     converted_to_gmt2 = datetime.datetime.strptime(lines[1], '%d/%m/%Y %H:%M') + datetime.timedelta(
                         hours=1)
-                    rb_name = lines[0]
                     if rb_name in self.epic_list:
                         timeleft, resp_date = self.get_time_left(converted_to_gmt2, self.epic_list[rb_name])
                     else:
@@ -94,12 +115,15 @@ class Raidboss:
 
                     if timeleft <= datetime.timedelta():
                         in_window_time_left = self.get_window_time_left(resp_date, rb_name)
-                        rblist.append([rb_name, lines[2], 'WINDOW ' + str(in_window_time_left) + ' left', resp_date])
+                        rblist.append([rb_name, lines[2],
+                                       'WINDOW ' + str(in_window_time_left) + ' left',
+                                       resp_date,
+                                       drop])
                     else:
                         timeleft = str(timeleft).split('.', 2)[0]
-                        rblist.append([lines[0], lines[2], timeleft, resp_date])
+                        rblist.append([lines[0], lines[2], timeleft, resp_date, drop])
                 else:
-                    rblist.append([lines[0], lines[2], lines[1], ''])
+                    rblist.append([lines[0], lines[2], lines[1], '', drop])
 
         rblist_sorted = sorted(rblist, key=itemgetter(3), reverse=False)
         #pprint(rblist_sorted)
