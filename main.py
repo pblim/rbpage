@@ -1,5 +1,7 @@
 import datetime
 from operator import itemgetter
+from pprint import pprint
+
 from bs4 import BeautifulSoup
 from flask import render_template, Flask
 from requests_html import HTMLSession
@@ -55,6 +57,7 @@ class Raidboss:
         cookies = {'BPG': '96ddda0017fe6d958a9df5700e90bb00'}
         session = HTMLSession()
         response = session.get('https://lineage2forever.org/', headers=headers, cookies=cookies, timeout=90)
+        pprint(response.content)
         soup = BeautifulSoup(response.content, 'html.parser')
         table = soup.find('table', attrs={'class': 'table'})
         try:
