@@ -37,7 +37,8 @@ class Raidboss:
             'Blinding Fire Barakiel': '2',
             'Hallate The Death Lord': '2',
             'Kernon': '2',
-            'Golkonda Longhorn': '2'
+            'Golkonda Longhorn': '2',
+            'Domb Death Cabrio': '2'
         }
 
         self.drop_list = {
