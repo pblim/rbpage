@@ -54,7 +54,8 @@ class Raidboss:
             'Ereve Deathman':  'Robe main',
             'Geyser Guardian Hestia':  'Light boots',
             'Jeruna Queen':  'Heavy helmet',
-            'Ketra Commander Tayr':  'Heavy main'
+            'Ketra Commander Tayr':  'Heavy main',
+            'Shax The Death Lord': 'Robe boots'
         }
 
     def get_time_left(self, tod, nextresp):
