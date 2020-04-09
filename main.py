@@ -77,7 +77,7 @@ class Raidboss:
                    'Accept-Language': 'pl,en-US;q=0.7,en;q=0.3',
                    'Cache-Control': 'max-age=0',
                    'Connection': 'keep-alive'}
-        cookies = {'BPG': '96ddda0017fe6d958a9df5700e90bb00'}
+        cookies = {'BPG': 'f261f0dd2ed98a5373eeaa00e7556afc'}
         session = HTMLSession()
         response = session.get('https://lineage2forever.org/', headers=headers, cookies=cookies, timeout=90)
         #pprint(response.content)
@@ -101,6 +101,10 @@ class Raidboss:
         for lines in data:
             if len(lines) == 3:
                 rb_name = lines[0]
+
+                if rb_name == 'Antharas1':
+                    lines[1] = '07/04/2020 00:20'
+                    lines[2] = 'Dead'
 
                 if rb_name in self.drop_list:
                     drop = self.drop_list[rb_name]
