@@ -77,7 +77,7 @@ class Raidboss:
                    'Accept-Language': 'pl,en-US;q=0.7,en;q=0.3',
                    'Cache-Control': 'max-age=0',
                    'Connection': 'keep-alive'}
-        cookies = {'BPG': 'f261f0dd2ed98a5373eeaa00e7556afc'}
+        cookies = {'BPG': '96ddda0017fe6d958a9df5700e90bb00'}
         session = HTMLSession()
         response = session.get('https://lineage2forever.org/', headers=headers, cookies=cookies, timeout=90)
         #pprint(response.content)
