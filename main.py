@@ -80,9 +80,7 @@ class Raidboss:
         else:
             windows_left = datetime.datetime.now() - window_end
         windows_left = str(windows_left).split('.', 2)[0]
-        # print("RB " + str(rb_name) + " R%ESP DATE " + str(
-        #     datetime.datetime.strptime(resp_date, '%Y-%m-%d %H:%M:%S')) + " NOW "
-        #       + str(datetime.datetime.now()) + " LEFTE " + str(windows_left) + " WINDOW END " + str(window_end))
+
         return windows_left
 
     def get_boses(self):
@@ -154,7 +152,7 @@ class Raidboss:
 
 
 boss = Raidboss()
-boss.get_boses()
+#boss.get_boses()
 
 app = Flask(__name__)
 
