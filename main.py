@@ -68,9 +68,9 @@ class Raidboss:
 
     def get_window_time_left(self, resp_date, rb_name):
         if rb_name in self.epic_list:
-            window_interval = 30
-        else:
             window_interval = 60
+        else:
+            window_interval = 120
 
         window_end = datetime.datetime.strptime(resp_date, '%Y-%m-%d %H:%M:%S') \
                                                 + datetime.timedelta(minutes=window_interval)
@@ -136,15 +136,27 @@ class Raidboss:
 
                     if timeleft <= datetime.timedelta():
                         in_window_time_left = self.get_window_time_left(resp_date, rb_name)
-                        rblist.append([rb_name, lines[2],
+                        rblist.append([rb_name,
+                                       lines[2],
                                        'WINDOW ' + str(in_window_time_left) + ' left',
                                        resp_date,
-                                       drop])
+                                       drop
+                                       ])
                     else:
                         timeleft = str(timeleft).split('.', 2)[0]
-                        rblist.append([lines[0], lines[2], timeleft, resp_date, drop])
+                        rblist.append([lines[0],
+                                       lines[2],
+                                       timeleft,
+                                       resp_date,
+                                       drop
+                                       ])
                 else:
-                    rblist.append([lines[0], lines[2], lines[1], '', drop])
+                    rblist.append([lines[0],
+                                   lines[2],
+                                   lines[1],
+                                   '',
+                                   drop
+                                   ])
 
         rblist_sorted = sorted(rblist, key=itemgetter(3), reverse=False)
         # pprint(rblist_sorted)
@@ -152,7 +164,7 @@ class Raidboss:
 
 
 boss = Raidboss()
-#boss.get_boses()
+# boss.get_boses()
 
 app = Flask(__name__)
 
