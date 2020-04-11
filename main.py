@@ -11,7 +11,6 @@ class Raidboss:
     def __init__(self):
 
         self.custom_list = {
-            'Under Queenant Dron': '1380',
             'King Tiger Karuta': '5700',
             'Uruka': '5700',
             'Ocean Flame Ashakiel': '5700',
@@ -41,7 +40,11 @@ class Raidboss:
             'Queen Ant': '5010',
             'Baium': '7170',
             'Antharas1': '10050',
-            'Valakas': '12930'
+            'Valakas': '12930',
+            'Under Queenant Dron': '1380',
+            'Under Orfen Lordipos': '1380',
+            'Under Core Dekare': '1380',
+            'Under Baium Angel': '1380'
         }
 
         self.drop_list = {
