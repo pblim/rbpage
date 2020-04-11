@@ -77,9 +77,10 @@ class Raidboss:
 
         if window_end > datetime.datetime.now():
             windows_left = window_end - datetime.datetime.now()
+            windows_left = str(windows_left).split('.', 2)[0]
+            windows_left = f'{windows_left} left'
         else:
-            windows_left = datetime.datetime.now() - window_end
-        windows_left = str(windows_left).split('.', 2)[0]
+            windows_left = "should be spawned !!!"
 
         return windows_left
 
@@ -125,8 +126,8 @@ class Raidboss:
                     drop = ''
 
                 if lines[2] == 'Dead':
-                    converted_to_gmt2 = datetime.datetime.strptime(lines[1], '%d/%m/%Y %H:%M') + datetime.timedelta(
-                        hours=1)
+                    converted_to_gmt2 = datetime.datetime.strptime(lines[1], '%d/%m/%Y %H:%M') \
+                                        + datetime.timedelta(hours=1)
                     if rb_name in self.epic_list:
                         timeleft, resp_date = self.get_time_left(converted_to_gmt2, self.epic_list[rb_name])
                     elif rb_name in self.custom_list:
@@ -138,7 +139,7 @@ class Raidboss:
                         in_window_time_left = self.get_window_time_left(resp_date, rb_name)
                         rblist.append([rb_name,
                                        lines[2],
-                                       'WINDOW ' + str(in_window_time_left) + ' left',
+                                       'WINDOW ' + str(in_window_time_left),
                                        resp_date,
                                        drop
                                        ])
