@@ -115,13 +115,11 @@ class Raidboss:
 
         rblist = []
 
+        data.append(['Antharas1', '07/04/2020 00:10', 'Dead'])
+
         for lines in data:
             if len(lines) == 3:
                 rb_name = lines[0]
-
-                if rb_name == 'Antharas1':
-                    lines[1] = '07/04/2020 00:20'
-                    lines[2] = 'Dead'
 
                 if rb_name in self.drop_list:
                     drop = self.drop_list[rb_name]
