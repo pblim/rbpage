@@ -115,7 +115,7 @@ class Raidboss:
 
         rblist = []
 
-        data.append(['Antharas1', '07/04/2020 00:10', 'Dead'])
+        #data.append(['Antharas1', '07/04/2020 00:10', 'Dead'])
 
         for lines in data:
             if len(lines) == 3:
